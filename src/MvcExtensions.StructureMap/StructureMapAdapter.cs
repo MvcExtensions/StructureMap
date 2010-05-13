@@ -62,17 +62,17 @@ namespace MvcExtensions.StructureMap
                                     {
                                         ConfiguredInstance expression;
 
-                                        if (lifetime == LifetimeType.PerRequest)
+                                        switch (lifetime)
                                         {
-                                            expression = x.For(serviceType).HttpContextScoped().Use(implementationType);
-                                        }
-                                        else if (lifetime == LifetimeType.Singleton)
-                                        {
-                                            expression = x.For(serviceType).Singleton().Use(implementationType);
-                                        }
-                                        else
-                                        {
-                                            expression = x.For(serviceType).Use(implementationType);
+                                            case LifetimeType.PerRequest:
+                                                expression = x.For(serviceType).HttpContextScoped().Use(implementationType);
+                                                break;
+                                            case LifetimeType.Singleton:
+                                                expression = x.For(serviceType).Singleton().Use(implementationType);
+                                                break;
+                                            default:
+                                                expression = x.For(serviceType).Use(implementationType);
+                                                break;
                                         }
 
                                         if (!string.IsNullOrEmpty(key))
