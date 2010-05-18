@@ -19,7 +19,7 @@ namespace MvcExtensions.StructureMap
     using ObjectInstance = global::StructureMap.Pipeline.ObjectInstance;
 
     /// <summary>
-    /// Defines an adapter class which with backed by StructureMap <seealso cref="IContainer">Container</seealso>.
+    /// Defines an adapter class which is backed by StructureMap <seealso cref="IContainer">Container</seealso>.
     /// </summary>
     [CLSCompliant(false)]
     public class StructureMapAdapter : ServiceLocatorImplBase, IServiceRegistrar, IServiceInjector
