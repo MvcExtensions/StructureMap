@@ -21,14 +21,14 @@ namespace MvcExtensions.StructureMap.Tests
     public class StructureMapBootstrapperTests
     {
         [Fact]
-        public void Should_be_able_to_create_service_locator()
+        public void Should_be_able_to_create_adapter()
         {
             var buildManager = new Mock<IBuildManager>();
             buildManager.SetupGet(bm => bm.Assemblies).Returns(new[] { GetType().Assembly });
 
             var bootstrapper = new StructureMapBootstrapper(buildManager.Object);
 
-            Assert.IsType<StructureMapAdapter>(bootstrapper.ServiceLocator);
+            Assert.IsType<StructureMapAdapter>(bootstrapper.Adapter);
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace MvcExtensions.StructureMap.Tests
 
             var bootstrapper = new StructureMapBootstrapperTestDouble(container.Object, buildManager.Object);
 
-            Assert.IsType<StructureMapAdapter>(bootstrapper.ServiceLocator);
+            Assert.IsType<StructureMapAdapter>(bootstrapper.Adapter);
 
             container.Verify();
         }
@@ -62,7 +62,7 @@ namespace MvcExtensions.StructureMap.Tests
                 this.container = container;
             }
 
-            protected override IServiceLocator CreateServiceLocator()
+            protected override ContainerAdapter CreateAdapter()
             {
                 return new StructureMapAdapter(container);
             }

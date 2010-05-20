@@ -11,8 +11,6 @@ namespace MvcExtensions.StructureMap
     using System.Linq;
     using System.Web;
 
-    using Microsoft.Practices.ServiceLocation;
-
     using Container = global::StructureMap.Container;
     using IContainer = global::StructureMap.IContainer;
     using Registry = global::StructureMap.Configuration.DSL.Registry;
@@ -33,10 +31,10 @@ namespace MvcExtensions.StructureMap
         }
 
         /// <summary>
-        /// Creates the service locator.
+        /// Creates the container adapter.
         /// </summary>
         /// <returns></returns>
-        protected override IServiceLocator CreateServiceLocator()
+        protected override ContainerAdapter CreateAdapter()
         {
             IContainer container = new Container();
 
@@ -50,7 +48,7 @@ namespace MvcExtensions.StructureMap
         /// </summary>
         protected override void LoadModules()
         {
-            IContainer container = ((StructureMapAdapter)ServiceLocator).Container;
+            IContainer container = ((StructureMapAdapter)Adapter).Container;
 
             BuildManager.ConcreteTypes
                         .Where(type => registryType.IsAssignableFrom(type) && type.HasDefaultConstructor())

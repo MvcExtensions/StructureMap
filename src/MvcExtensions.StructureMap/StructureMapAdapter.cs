@@ -11,10 +11,7 @@ namespace MvcExtensions.StructureMap
     using System.Collections.Generic;
     using System.Linq;
 
-    using Microsoft.Practices.ServiceLocation;
-
     using ConfiguredInstance = global::StructureMap.Pipeline.ConfiguredInstance;
-    using ConfigurrationExpression = global::StructureMap.ConfigurationExpression;
     using IContainer = global::StructureMap.IContainer;
     using ObjectInstance = global::StructureMap.Pipeline.ObjectInstance;
 
@@ -22,7 +19,7 @@ namespace MvcExtensions.StructureMap
     /// Defines an adapter class which is backed by StructureMap <seealso cref="IContainer">Container</seealso>.
     /// </summary>
     [CLSCompliant(false)]
-    public class StructureMapAdapter : ServiceLocatorImplBase, IServiceRegistrar, IServiceInjector
+    public class StructureMapAdapter : ContainerAdapter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StructureMapAdapter"/> class.
@@ -53,7 +50,7 @@ namespace MvcExtensions.StructureMap
         /// <param name="implementationType">Type of the implementation.</param>
         /// <param name="lifetime">The lifetime of the service.</param>
         /// <returns></returns>
-        public virtual IServiceRegistrar RegisterType(string key, Type serviceType, Type implementationType, LifetimeType lifetime)
+        public override IServiceRegistrar RegisterType(string key, Type serviceType, Type implementationType, LifetimeType lifetime)
         {
             Invariant.IsNotNull(serviceType, "serviceType");
             Invariant.IsNotNull(implementationType, "implementationType");
@@ -91,7 +88,7 @@ namespace MvcExtensions.StructureMap
         /// <param name="serviceType">Type of the service.</param>
         /// <param name="instance">The instance.</param>
         /// <returns></returns>
-        public virtual IServiceRegistrar RegisterInstance(string key, Type serviceType, object instance)
+        public override IServiceRegistrar RegisterInstance(string key, Type serviceType, object instance)
         {
             Invariant.IsNotNull(serviceType, "serviceType");
             Invariant.IsNotNull(instance, "instance");
@@ -113,7 +110,7 @@ namespace MvcExtensions.StructureMap
         /// Injects the matching dependences.
         /// </summary>
         /// <param name="instance">The instance.</param>
-        public virtual void Inject(object instance)
+        public override void Inject(object instance)
         {
             if (instance != null)
             {
