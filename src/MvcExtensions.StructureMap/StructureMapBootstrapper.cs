@@ -52,7 +52,7 @@ namespace MvcExtensions.StructureMap
 
             BuildManager.ConcreteTypes
                         .Where(type => registryType.IsAssignableFrom(type) && type.HasDefaultConstructor())
-                        .Select(type => Activator.CreateInstance(type))
+                        .Select(Activator.CreateInstance)
                         .Cast<Registry>()
                         .Each(registry => container.Configure(x => x.AddRegistry(registry)));
         }

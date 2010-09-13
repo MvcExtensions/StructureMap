@@ -9,8 +9,6 @@ namespace MvcExtensions.StructureMap.Tests
 {
     using System;
 
-    using Microsoft.Practices.ServiceLocation;
-
     using Moq;
     using Xunit;
 
