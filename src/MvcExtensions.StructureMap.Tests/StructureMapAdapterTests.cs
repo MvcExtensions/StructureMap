@@ -67,31 +67,31 @@ namespace MvcExtensions.StructureMap.Tests
         }
 
         [Fact]
-        public void Should_be_able_to_get_instance_by_type()
+        public void Should_be_able_to_get_service_by_type()
         {
             container.Setup(c => c.GetInstance(It.IsAny<Type>()));
 
-            adapter.GetInstance<DummyObject>();
+            adapter.GetService<DummyObject>();
 
             container.VerifyAll();
         }
 
         [Fact]
-        public void Should_be_able_to_get_instance_by_type_and_key()
+        public void Should_be_able_to_get_service_by_type_and_key()
         {
             container.Setup(c => c.GetInstance(It.IsAny<Type>(), It.IsAny<string>()));
 
-            adapter.GetInstance<DummyObject>("foo");
+            adapter.GetService<DummyObject>("foo");
 
             container.VerifyAll();
         }
 
         [Fact]
-        public void Should_be_able_to_get_all_instances()
+        public void Should_be_able_to_get_services()
         {
             container.Setup(c => c.GetAllInstances(It.IsAny<Type>())).Returns(new[] { new DummyObject() });
 
-            adapter.GetAllInstances(typeof(DummyObject));
+            adapter.GetServices(typeof(DummyObject));
 
             container.VerifyAll();
         }
