@@ -8,6 +8,7 @@
 namespace MvcExtensions.StructureMap.Tests
 {
     using System;
+    using System.Web.Mvc;
 
     using Moq;
     using Xunit;
