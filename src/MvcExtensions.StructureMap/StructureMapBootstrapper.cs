@@ -26,7 +26,9 @@ namespace MvcExtensions.StructureMap
         /// Initializes a new instance of the <see cref="StructureMapBootstrapper"/> class.
         /// </summary>
         /// <param name="buildManager">The build manager.</param>
-        public StructureMapBootstrapper(IBuildManager buildManager) : base(buildManager)
+        /// <param name="bootstrapperTasks">The bootstrapper tasks.</param>
+        /// <param name="perRequestTasks">The per request tasks.</param>
+        public StructureMapBootstrapper(IBuildManager buildManager, IBootstrapperTasksRegistry bootstrapperTasks, IPerRequestTasksRegistry perRequestTasks) : base(buildManager, bootstrapperTasks, perRequestTasks)
         {
         }
 

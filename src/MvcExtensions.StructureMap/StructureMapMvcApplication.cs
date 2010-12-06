@@ -20,7 +20,7 @@ namespace MvcExtensions.StructureMap
         /// <returns></returns>
         protected override IBootstrapper CreateBootstrapper()
         {
-            return new StructureMapBootstrapper(BuildManagerWrapper.Current);
+            return new StructureMapBootstrapper(BuildManagerWrapper.Current, BootstrapperTasksRegistry.Current, PerRequestTasksRegistry.Current);
         }
     }
 }

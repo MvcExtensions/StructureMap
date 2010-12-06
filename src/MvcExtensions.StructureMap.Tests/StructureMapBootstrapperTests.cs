@@ -24,7 +24,7 @@ namespace MvcExtensions.StructureMap.Tests
             var buildManager = new Mock<IBuildManager>();
             buildManager.SetupGet(bm => bm.Assemblies).Returns(new[] { GetType().Assembly });
 
-            var bootstrapper = new StructureMapBootstrapper(buildManager.Object);
+            var bootstrapper = new StructureMapBootstrapper(buildManager.Object, new Mock<IBootstrapperTasksRegistry>().Object, new Mock<IPerRequestTasksRegistry>().Object);
 
             Assert.IsType<StructureMapAdapter>(bootstrapper.Adapter);
         }
@@ -40,7 +40,7 @@ namespace MvcExtensions.StructureMap.Tests
             var container = new Mock<IContainer>();
             container.Setup(c => c.Configure(It.IsAny<Action<ConfigurationExpression>>())).Callback((Action<ConfigurationExpression> x) => x(registry)).Verifiable();
 
-            var bootstrapper = new StructureMapBootstrapperTestDouble(container.Object, buildManager.Object);
+            var bootstrapper = new StructureMapBootstrapperTestDouble(container.Object, buildManager.Object, new Mock<IBootstrapperTasksRegistry>().Object, new Mock<IPerRequestTasksRegistry>().Object);
 
             Assert.IsType<StructureMapAdapter>(bootstrapper.Adapter);
 
@@ -55,7 +55,7 @@ namespace MvcExtensions.StructureMap.Tests
         {
             private readonly IContainer container;
 
-            public StructureMapBootstrapperTestDouble(IContainer container, IBuildManager buildManager) : base(buildManager)
+            public StructureMapBootstrapperTestDouble(IContainer container, IBuildManager buildManager, IBootstrapperTasksRegistry bootstrapperTasksRegistry, IPerRequestTasksRegistry perRequestTasksRegistry) : base(buildManager, bootstrapperTasksRegistry, perRequestTasksRegistry)
             {
                 this.container = container;
             }
