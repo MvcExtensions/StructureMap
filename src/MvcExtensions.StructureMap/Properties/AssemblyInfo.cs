@@ -8,9 +8,7 @@
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Security;
 
-[assembly: AllowPartiallyTrustedCallers]
 [assembly: AssemblyTitle("MvcExtensions.StructureMap")]
 [assembly: AssemblyProduct("MvcExtensions.StructureMap")]
 [assembly: CLSCompliant(true)]
