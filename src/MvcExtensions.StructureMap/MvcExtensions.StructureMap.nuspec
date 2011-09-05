@@ -15,6 +15,7 @@
   </metadata>
   <files>
     <file src="MvcExtensions.StructureMap.dll" target="lib\net40\MvcExtensions.StructureMap.dll" />
+    <file src="MvcExtensions.StructureMap.pdb" target="lib\net40\MvcExtensions.StructureMap.pdb" />
     <file src="MvcExtensions.StructureMap.xml" target="lib\net40\MvcExtensions.StructureMap.xml" />
   </files>
 </package>
