@@ -57,9 +57,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.2.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -70,11 +69,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\AspNetMvc3\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="xunit, Version=1.8.0.1545, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.1.8.0.1545\lib\xunit.dll</HintPath>
+    <Reference Include="xunit">
+      <HintPath>..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.extensions, Version=1.8.0.1545, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.extensions.1.8.0.1545\lib\xunit.extensions.dll</HintPath>
+    <Reference Include="xunit.extensions">
+      <HintPath>..\packages\xunit.extensions.1.8.0.1549\lib\xunit.extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
