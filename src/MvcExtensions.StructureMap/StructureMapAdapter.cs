@@ -11,9 +11,7 @@ namespace MvcExtensions.StructureMap
     using System.Collections.Generic;
     using System.Linq;
 
-    using ConfiguredInstance = global::StructureMap.Pipeline.ConfiguredInstance;
     using IContainer = global::StructureMap.IContainer;
-    using ObjectInstance = global::StructureMap.Pipeline.ObjectInstance;
 
     /// <summary>
     /// Defines an adapter class which is backed by StructureMap <seealso cref="IContainer">Container</seealso>.
@@ -105,7 +103,7 @@ namespace MvcExtensions.StructureMap
         /// <returns></returns>
         protected override object DoGetService(Type serviceType)
         {
-            return Container.GetInstance(serviceType);
+            return Container.TryGetInstance(serviceType);
         }
 
         /// <summary>

@@ -70,7 +70,7 @@ namespace MvcExtensions.StructureMap.Tests
         [Fact]
         public void Should_be_able_to_get_service_by_type()
         {
-            container.Setup(c => c.GetInstance(It.IsAny<Type>()));
+            container.Setup(c => c.TryGetInstance(It.IsAny<Type>()));
 
             adapter.GetService<DummyObject>();
 
