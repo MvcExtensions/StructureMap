@@ -45,38 +45,27 @@ namespace MvcExtensions.StructureMap
         /// <summary>
         /// Registers the type.
         /// </summary>
-        /// <param name="key">The key.</param>
         /// <param name="serviceType">Type of the service.</param>
         /// <param name="implementationType">Type of the implementation.</param>
         /// <param name="lifetime">The lifetime of the service.</param>
         /// <returns></returns>
-        public override IServiceRegistrar RegisterType(string key, Type serviceType, Type implementationType, LifetimeType lifetime)
+        public override IServiceRegistrar RegisterType(Type serviceType, Type implementationType, LifetimeType lifetime)
         {
             Invariant.IsNotNull(serviceType, "serviceType");
             Invariant.IsNotNull(implementationType, "implementationType");
 
-            Container.Configure(x =>
-                                    {
-                                        ConfiguredInstance expression;
-
-                                        switch (lifetime)
-                                        {
-                                            case LifetimeType.PerRequest:
-                                                expression = x.For(serviceType).HttpContextScoped().Use(implementationType);
-                                                break;
-                                            case LifetimeType.Singleton:
-                                                expression = x.For(serviceType).Singleton().Use(implementationType);
-                                                break;
-                                            default:
-                                                expression = x.For(serviceType).Use(implementationType);
-                                                break;
-                                        }
-
-                                        if (!string.IsNullOrEmpty(key))
-                                        {
-                                            expression.Named(key);
-                                        }
-                                    });
+            switch (lifetime)
+            {
+                case LifetimeType.PerRequest:
+                    Container.Configure(x => x.For(serviceType).HttpContextScoped().Use(implementationType));
+                    break;
+                case LifetimeType.Singleton:
+                    Container.Configure(x => x.For(serviceType).Singleton().Use(implementationType));
+                    break;
+                default:
+                    Container.Configure(x => x.For(serviceType).Use(implementationType));
+                    break;
+            }
 
             return this;
         }
@@ -84,24 +73,15 @@ namespace MvcExtensions.StructureMap
         /// <summary>
         /// Registers the instance.
         /// </summary>
-        /// <param name="key">The key.</param>
         /// <param name="serviceType">Type of the service.</param>
         /// <param name="instance">The instance.</param>
         /// <returns></returns>
-        public override IServiceRegistrar RegisterInstance(string key, Type serviceType, object instance)
+        public override IServiceRegistrar RegisterInstance(Type serviceType, object instance)
         {
             Invariant.IsNotNull(serviceType, "serviceType");
             Invariant.IsNotNull(instance, "instance");
 
-            Container.Configure(x =>
-                                    {
-                                        ObjectInstance expression = x.For(serviceType).Use(instance);
-
-                                        if (!string.IsNullOrEmpty(key))
-                                        {
-                                            expression.Named(key);
-                                        }
-                                    });
+            Container.Configure(x => x.For(serviceType).Use(instance));
 
             return this;
         }
@@ -122,11 +102,10 @@ namespace MvcExtensions.StructureMap
         /// Gets the service.
         /// </summary>
         /// <param name="serviceType">Type of the service.</param>
-        /// <param name="key">The key.</param>
         /// <returns></returns>
-        protected override object DoGetService(Type serviceType, string key)
+        protected override object DoGetService(Type serviceType)
         {
-            return string.IsNullOrEmpty(key) ? Container.GetInstance(serviceType) : Container.GetInstance(serviceType, key);
+            return Container.GetInstance(serviceType);
         }
 
         /// <summary>

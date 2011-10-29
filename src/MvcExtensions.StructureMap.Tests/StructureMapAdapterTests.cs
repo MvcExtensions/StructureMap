@@ -38,7 +38,7 @@ namespace MvcExtensions.StructureMap.Tests
 
             container.Setup(c => c.Configure(It.IsAny<Action<ConfigurationExpression>>())).Callback((Action<ConfigurationExpression> x) => x(registry)).Verifiable();
 
-            adapter.RegisterType("foo", typeof(DummyObject), typeof(DummyObject), lifetime);
+            adapter.RegisterType(typeof(DummyObject), typeof(DummyObject), lifetime);
 
             container.Verify();
         }
@@ -50,7 +50,7 @@ namespace MvcExtensions.StructureMap.Tests
 
             container.Setup(c => c.Configure(It.IsAny<Action<ConfigurationExpression>>())).Callback((Action<ConfigurationExpression> x) => x(registry)).Verifiable();
 
-            adapter.RegisterInstance("foo", typeof(DummyObject), new DummyObject());
+            adapter.RegisterInstance(typeof(DummyObject), new DummyObject());
 
             container.Verify();
         }
